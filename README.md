@@ -1,2 +1,2 @@
-# The-Carrom-Way
+# The Carrom Way
 A Carrom Board game made from Unity2D with C#
