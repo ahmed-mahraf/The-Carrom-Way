@@ -223,8 +223,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1632451905}
-  - {fileID: 1343290508}
   - {fileID: 953365135}
+  - {fileID: 1343290508}
   - {fileID: 1819124625}
   m_Father: {fileID: 1363911178}
   m_RootOrder: 2
@@ -348,6 +348,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White Puck (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
@@ -492,6 +497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White Puck (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
@@ -656,6 +666,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White Puck (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
@@ -1176,7 +1191,7 @@ PrefabInstance:
     - target: {fileID: 619663033830550447, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 619663033830550447, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
@@ -1196,7 +1211,7 @@ PrefabInstance:
     - target: {fileID: 6562855954875516321, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
       propertyPath: m_Name
-      value: Hole (1)
+      value: Hole (BR)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6afeceb74cc544593bae533c4a04ff, type: 3}
@@ -1424,6 +1439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White Puck (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
@@ -1695,7 +1715,7 @@ PrefabInstance:
     - target: {fileID: 6562855954875516321, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
       propertyPath: m_Name
-      value: Hole (3)
+      value: Hole (BL)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6afeceb74cc544593bae533c4a04ff, type: 3}
@@ -1710,6 +1730,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White Puck (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
@@ -1786,6 +1811,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: White Puck (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1860,6 +1890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White Puck (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
@@ -2031,6 +2066,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: White Puck (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2088,6 +2128,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8952de95d9dc5ef4ba54129d502d27bd, type: 3}
+--- !u!1 &1931741398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8369900881104734889, guid: af59efd7c90dcb642a696c4e69b37fd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4213081236036239987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1959810891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7944245487583551890, guid: 21505ace9a3add0458d45bd6cf7d0d54,
@@ -2220,7 +2266,7 @@ PrefabInstance:
     - target: {fileID: 619663033830550447, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 619663033830550447, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
@@ -2240,7 +2286,7 @@ PrefabInstance:
     - target: {fileID: 6562855954875516321, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
       propertyPath: m_Name
-      value: Hole (2)
+      value: Hole (TL)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6afeceb74cc544593bae533c4a04ff, type: 3}
@@ -2324,6 +2370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White Puck
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089764293278261156, guid: 8952de95d9dc5ef4ba54129d502d27bd,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6906218609587554838, guid: 8952de95d9dc5ef4ba54129d502d27bd,
         type: 3}
@@ -2522,7 +2573,7 @@ PrefabInstance:
     - target: {fileID: 6562855954875516321, guid: 7d6afeceb74cc544593bae533c4a04ff,
         type: 3}
       propertyPath: m_Name
-      value: Hole
+      value: Hole (TR)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6afeceb74cc544593bae533c4a04ff, type: 3}
@@ -2533,6 +2584,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3491721473614726037, guid: af59efd7c90dcb642a696c4e69b37fd6,
+        type: 3}
+      propertyPath: ArrowDirection
+      value: 
+      objectReference: {fileID: 1931741398}
     - target: {fileID: 3458818333985841021, guid: af59efd7c90dcb642a696c4e69b37fd6,
         type: 3}
       propertyPath: m_Name
@@ -2566,12 +2622,12 @@ PrefabInstance:
     - target: {fileID: 3526642691491993896, guid: af59efd7c90dcb642a696c4e69b37fd6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3526642691491993896, guid: af59efd7c90dcb642a696c4e69b37fd6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3526642691491993896, guid: af59efd7c90dcb642a696c4e69b37fd6,
         type: 3}
@@ -2591,7 +2647,7 @@ PrefabInstance:
     - target: {fileID: 3526642691491993896, guid: af59efd7c90dcb642a696c4e69b37fd6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af59efd7c90dcb642a696c4e69b37fd6, type: 3}
