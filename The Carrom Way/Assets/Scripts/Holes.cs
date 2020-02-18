@@ -8,7 +8,7 @@ public class Holes : MonoBehaviour
     {
         if (collider.gameObject.tag == "Pucks") // If object is tagged pucks, then collect pucks
         {
-            Destroy(collider.gameObject);
+            GameManager.Instance.CoinCollected(collider.gameObject);
         }
         if (collider.gameObject.tag == "Striker") // If object is tagged striker, then reset striker
         {
