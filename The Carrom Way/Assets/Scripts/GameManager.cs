@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     public Transform collectedPuckPos;
     public float offset = 0.5f;
     public int numberOfCoinsCollected;
+    int strikerForce;
+    public int baseStrikerForce = 1000;
+    public Striker striker;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,12 @@ public class GameManager : MonoBehaviour
         offset = 0.5f * numberOfCoinsCollected;
         collectedCoin.transform.position = new Vector2(collectedPuckPos.position.x + offset, collectedPuckPos.position.y);
         numberOfCoinsCollected += 1;
+    }
+
+    public int CalculateStrikerForce()
+    {
+        strikerForce = (int)(baseStrikerForce * UIManager.Instance.powerIndicator.fillAmount);
+        return strikerForce;
     }
 
 }

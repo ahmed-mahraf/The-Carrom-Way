@@ -5,42 +5,45 @@ using UnityEngine;
 public class Striker : MonoBehaviour
 {
     Rigidbody2D rb2d;
-
+    public LineRenderer visualizerLine;
     Vector2 startPos;
     Vector2 dir;
-
     Vector3 worldToMousePos;
-
-    public GameObject ArrowDirection;
-
-    Transform arrowTransform;
     Transform selfTransform;
-
-    public int strikeSpeed = 1000;
-
+    public int strikerSpeed = 1000;
     bool isStruck = false;
-    bool posIsSet = false;
+    public bool posIsSet = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>(); // Declare Rigidbody2D
-        arrowTransform = ArrowDirection.transform; // Declare arrowTransformation
-        selfTransform = transform;
         startPos = transform.position;
+        selfTransform = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        worldToMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Finds the mouse position on the world
+
+        dir = (Vector2)((worldToMousePos - transform.position)); // sets direction by calculating the difference between the location of mouse to position of striker
+        dir.Normalize(); // vector keeps the same direction but its length is 1.0.
+
         if (!isStruck && !posIsSet)
         {
             selfTransform.position = new Vector2(Mathf.Clamp(worldToMousePos.x, -3, 3), startPos.y);
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if (posIsSet && rb2d.velocity.magnitude == 0)
         {
-            if(!posIsSet)
+            visualizerLine.SetPosition(0, selfTransform.position);
+            visualizerLine.SetPosition(1, worldToMousePos);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!posIsSet)
             {
                 posIsSet = true;
             }
@@ -48,39 +51,31 @@ public class Striker : MonoBehaviour
 
         // ---- FIXED UPDATE ---- //
 
-        worldToMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Finds the mouse position on the world
-
-        dir = (Vector2)((worldToMousePos - transform.position)); // sets direction by calculating the difference between the location of mouse to position of striker
-        dir.Normalize(); // vector keeps the same direction but its length is 1.0.
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonUp(0) && rb2d.velocity.magnitude == 0)
         {
             Shoot();
         }
 
         if (rb2d.velocity.magnitude < 0.2f && rb2d.velocity.magnitude != 0) // Set arrow when magnitude is less than 0.2 in value.
         {
-            rb2d.velocity = Vector2.zero; // Sets the arrow
-            isStruck = false;
-            posIsSet = false;
+            resetStriker();
         }
-        else
-        {
-             // Disables the arrow
-        }
+
+    }
+
+    public void resetStriker()
+    {
+        // rb2d.transform.position = new Vector3(0, 3f);
+        rb2d.velocity = Vector2.zero;
+        isStruck = false;
+        posIsSet = false;
     }
 
     // Shoot is called when an input is selected
     public void Shoot()
     {
-        rb2d.AddForce(dir * strikeSpeed); // Direction * Speed of Striker = Movement; Just to see if moving the striker works.
+        rb2d.AddForce(dir * GameManager.Instance.CalculateStrikerForce()); // Direction * Speed of Striker = Movement; Just to see if moving the striker works.
         isStruck = true;
-    }
-
-    public void resetStriker()
-    {
-        rb2d.transform.position = new Vector3(0, 3f);
-        rb2d.velocity = new Vector2(0, 0);
     }
 }
 
