@@ -77,6 +77,11 @@ public class Striker : MonoBehaviour
         isStruck = true;
     }
 
+    public void resetStriker()
+    {
+        rb2d.transform.position = new Vector3(0, 3f);
+        rb2d.velocity = new Vector2(0, 0);
+    }
 }
 
 // Notes: For talcum powder I can set the linear drag and increase it.
