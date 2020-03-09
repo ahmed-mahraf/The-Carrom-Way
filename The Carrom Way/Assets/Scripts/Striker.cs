@@ -13,6 +13,7 @@ public class Striker : MonoBehaviour
     public int strikerSpeed = 1000;
     bool isStruck = false;
     public bool posIsSet = false;
+    public bool HostPlayer = true;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,14 @@ public class Striker : MonoBehaviour
 
         if (!isStruck && !posIsSet)
         {
-            selfTransform.position = new Vector2(Mathf.Clamp(worldToMousePos.x, -3, 3), startPos.y);
+            if (HostPlayer == true)
+            {
+                selfTransform.position = new Vector2(Mathf.Clamp(worldToMousePos.x, -3, 3), startPos.y);
+            }
+            else
+            {
+                selfTransform.position = new Vector2(Mathf.Clamp(worldToMousePos.x, -3, 3), -startPos.y);
+            }
         }
 
         if (posIsSet && rb2d.velocity.magnitude == 0)
@@ -65,7 +73,7 @@ public class Striker : MonoBehaviour
 
     public void resetStriker()
     {
-        // rb2d.transform.position = new Vector3(0, 3f);
+        switchPlayer();
         rb2d.velocity = Vector2.zero;
         isStruck = false;
         posIsSet = false;
@@ -76,6 +84,20 @@ public class Striker : MonoBehaviour
     {
         rb2d.AddForce(dir * GameManager.Instance.CalculateStrikerForce()); // Direction * Speed of Striker = Movement; Just to see if moving the striker works.
         isStruck = true;
+    }
+
+    public bool switchPlayer()
+    {
+        if (HostPlayer == true)
+        {
+            HostPlayer = false;
+            return false;
+        }
+        else
+        {
+            HostPlayer = true;
+            return true;
+        }
     }
 }
 

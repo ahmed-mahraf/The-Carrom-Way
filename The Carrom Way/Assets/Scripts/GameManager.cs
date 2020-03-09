@@ -19,33 +19,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Transform collectedPuckPos;
+    public Transform collectedBlackPos;
+    public Transform collectedWhitePos;
+
+    public int noOfBlackCoins;
+    public int noOfWhiteCoins;
+
     public float offset = 0.5f;
-    public int numberOfCoinsCollected;
+   
     int strikerForce;
     public int baseStrikerForce = 1000;
     public Striker striker;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void blackCoinCollected(GameObject collectedBlackCoin)
     {
-        
+        collectedBlackCoin.GetComponent<CircleCollider2D>().isTrigger = true;
+        collectedBlackCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        offset = 0.5f * noOfBlackCoins;
+        collectedBlackCoin.transform.position = new Vector2(collectedBlackPos.position.x + offset, collectedBlackPos.position.y);
+        noOfBlackCoins += 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void whiteCoinCollected(GameObject collectedWhiteCoin)
     {
-        
+        collectedWhiteCoin.GetComponent<CircleCollider2D>().isTrigger = true;
+        collectedWhiteCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        offset = 0.5f * noOfWhiteCoins;
+        collectedWhiteCoin.transform.position = new Vector2(collectedWhitePos.position.x + offset, collectedWhitePos.position.y);
+        noOfWhiteCoins += 1;
     }
 
-    public void CoinCollected(GameObject collectedCoin)
+    public void queenCollected(GameObject collectedQueenCoin)
     {
-        collectedCoin.GetComponent<CircleCollider2D>().isTrigger = true;
-        collectedCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        offset = 0.5f * numberOfCoinsCollected;
-        collectedCoin.transform.position = new Vector2(collectedPuckPos.position.x + offset, collectedPuckPos.position.y);
-        numberOfCoinsCollected += 1;
+        collectedQueenCoin.transform.position = new Vector3(0, 0f);
+        collectedQueenCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     public int CalculateStrikerForce()

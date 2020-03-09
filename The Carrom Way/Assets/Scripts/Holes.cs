@@ -8,14 +8,24 @@ public class Holes : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Pucks") // If object is tagged pucks, then collect pucks
+        if (collider.gameObject.tag == "Black") // If object is tagged pucks, then collect pucks
         {
-            GameManager.Instance.CoinCollected(collider.gameObject);
+            GameManager.Instance.blackCoinCollected(collider.gameObject);
         }
+
+        if (collider.gameObject.tag == "White")
+        {
+            GameManager.Instance.whiteCoinCollected(collider.gameObject);
+        }
+
+        if (collider.gameObject.tag == "Queen")
+        {
+            GameManager.Instance.queenCollected(collider.gameObject);
+        }
+
         if (collider.gameObject.tag == "Striker") // If object is tagged striker, then reset striker
         {
-            collider.transform.position = new Vector3(0, 3f);
-            //striker.resetStriker();
+            GameManager.Instance.striker.resetStriker();
         }
     }
 }

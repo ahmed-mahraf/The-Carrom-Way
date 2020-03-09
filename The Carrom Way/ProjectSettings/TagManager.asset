@@ -7,6 +7,9 @@ TagManager:
   - Hole
   - Striker
   - Pucks
+  - Queen
+  - Black
+  - White
   layers:
   - Default
   - TransparentFX

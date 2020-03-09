@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
    ///////////////////////////////
 
     public Image powerIndicator;
+    public Text player1;
+    public Text player2;
+
     public float factor = 5;
 
     // Update is called once per frame
@@ -36,16 +39,7 @@ public class UIManager : MonoBehaviour
                 Vector2.Distance(GameManager.Instance.striker.gameObject.transform.position, 
                 Camera.main.ScreenToWorldPoint(Input.mousePosition)) / factor;
 
-
-
-        //if (Input.GetKey(KeyCode.E)) //Increase striker force
-        //{
-        //    powerIndicator.fillAmount = Mathf.Clamp(powerIndicator.fillAmount, 0.1f, 1f) + Time.deltaTime;
-        //}
-
-        //if (Input.GetKey(KeyCode.Q)) //Decrease striker force
-        //{
-        //    powerIndicator.fillAmount = Mathf.Clamp(powerIndicator.fillAmount, 0.1f, 1f) - Time.deltaTime;
-        //}
+        player1.text = "Player 1 : " + GameManager.Instance.noOfBlackCoins.ToString();
+        player2.text = "Player 2 : " + GameManager.Instance.noOfWhiteCoins.ToString();
     }
 }
