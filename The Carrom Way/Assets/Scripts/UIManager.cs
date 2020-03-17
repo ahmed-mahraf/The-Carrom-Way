@@ -27,8 +27,15 @@ public class UIManager : MonoBehaviour
     public Image powerIndicator;
     public Text player1;
     public Text player2;
+    public Text gameText;
+    public Text winnerText;
 
     public float factor = 5;
+
+    void Start()
+    {
+        winnerText.text = "";
+    }
 
     // Update is called once per frame
     void Update()
@@ -41,5 +48,14 @@ public class UIManager : MonoBehaviour
 
         player1.text = "Player 1 : " + GameManager.Instance.noOfBlackCoins.ToString();
         player2.text = "Player 2 : " + GameManager.Instance.noOfWhiteCoins.ToString();
+
+        if(GameManager.Instance.striker.HostPlayer == true)
+        {
+            gameText.text = "Player 1's Turn (Black)";
+        }
+        else
+        {
+            gameText.text = "Player 2's Turn (White)";
+        }
     }
 }

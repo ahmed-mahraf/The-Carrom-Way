@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     int strikerForce;
     public int baseStrikerForce = 1000;
     public Striker striker;
+    public UIManager ui;
 
     public void blackCoinCollected(GameObject collectedBlackCoin)
     {
@@ -51,8 +52,25 @@ public class GameManager : MonoBehaviour
 
     public void queenCollected(GameObject collectedQueenCoin)
     {
-        collectedQueenCoin.transform.position = new Vector3(0, 0f);
-        collectedQueenCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        if (noOfBlackCoins == 9 || noOfWhiteCoins == 9)
+        {
+            if (GameManager.Instance.striker.HostPlayer == true)
+            {
+                GameManager.Instance.ui.winnerText.text = "Player 1 wins!";
+                GameManager.Instance.ui.winnerText.text = "Player 1 wins!";
+            }
+            else
+            {
+                GameManager.Instance.ui.winnerText.text = "Player 2 wins!";
+                GameManager.Instance.ui.winnerText.text = "Player 2 wins!";
+            }
+        }
+        else
+        {
+            collectedQueenCoin.transform.position = new Vector3(0, 0f);
+            collectedQueenCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+        
     }
 
     public int CalculateStrikerForce()
