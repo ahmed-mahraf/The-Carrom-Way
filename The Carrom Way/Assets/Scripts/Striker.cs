@@ -64,7 +64,7 @@ public class Striker : MonoBehaviour
             Shoot();
         }
 
-        if (rb2d.velocity.magnitude < 0.2f && rb2d.velocity.magnitude != 0) // Set arrow when magnitude is less than 0.2 in value.
+        if (rb2d.velocity.magnitude < 0.01f && rb2d.velocity.magnitude != 0) // Set arrow when magnitude is less than 0.2 in value.
         {
             resetStriker();
         }
