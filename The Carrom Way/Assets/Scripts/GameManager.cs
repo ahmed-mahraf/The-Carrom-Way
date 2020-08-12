@@ -1,82 +1,118 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+public enum Players
+{
+    player1 = 1,
+    player2 = 2
+}
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
 
-    public static GameManager Instance
+    public event Action ChangeTurnEvent;
+    public event Action<GameObject> OnFoul;
+    public static GameManager instance;
+
+    public Transform spawn01, spawn02;
+    public GameObject strikerPrefab;
+    public GameObject player1, player2;
+
+    private int whosTurn = (int)Players.player1;
+    public string getActiveTurn { get { return whosTurn.ToString(); } }
+    public int getActivePlayerID { get { return whosTurn; } }
+
+    public int GettotalPieces { get { return 4; } }
+    public GameObject getActivePlayer
     {
         get
         {
-            if (_instance == null)
-            {
-                _instance = GameObject.FindObjectOfType<GameManager>();
-            }
-
-            return _instance;
+            if (whosTurn == (int)Players.player1)
+                return player1;
+            return player2;
+        }
+    }
+    public string getActivePlayerPieceColor
+    {
+        get
+        {
+            if (whosTurn == (int)Players.player1)
+                return player1.GetComponent<Striker>().puckColor;
+            return player2.GetComponent<Striker>().puckColor;
         }
     }
 
-    public Transform collectedBlackPos;
-    public Transform collectedWhitePos;
 
-    public int noOfBlackCoins;
-    public int noOfWhiteCoins;
 
-    public float offset = 0.5f;
-   
-    int strikerForce;
-    public int baseStrikerForce = 1000;
-    public Striker striker;
-    public UIManager ui;
-
-    public void blackCoinCollected(GameObject collectedBlackCoin)
+    private void Awake()
     {
-        collectedBlackCoin.GetComponent<CircleCollider2D>().isTrigger = true;
-        collectedBlackCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        offset = 0.5f * noOfBlackCoins;
-        collectedBlackCoin.transform.position = new Vector2(collectedBlackPos.position.x + offset, collectedBlackPos.position.y);
-        noOfBlackCoins += 1;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.transform);
     }
 
-    public void whiteCoinCollected(GameObject collectedWhiteCoin)
+    private void OnEnable()
     {
-        collectedWhiteCoin.GetComponent<CircleCollider2D>().isTrigger = true;
-        collectedWhiteCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        offset = 0.5f * noOfWhiteCoins;
-        collectedWhiteCoin.transform.position = new Vector2(collectedWhitePos.position.x + offset, collectedWhitePos.position.y);
-        noOfWhiteCoins += 1;
+        Holes.PuckHole += OnPieceHole;
+    }
+    private void OnDisable()
+    {
+        Holes.PuckHole -= OnPieceHole;
     }
 
-    public void queenCollected(GameObject collectedQueenCoin)
+
+    private void Start()
     {
-        if (noOfBlackCoins == 9 || noOfWhiteCoins == 9)
+        // instantiating striker and setting the playerID [player 1]
+        player1 = Instantiate(strikerPrefab, spawn01.transform.position, Quaternion.identity);
+        player1.GetComponent<Striker>().playerID = (int)Players.player1;
+        // instantiating striker and setting the playerID [player 2]
+        player2 = Instantiate(strikerPrefab, spawn02.transform.position, Quaternion.identity);
+        player2.GetComponent<Striker>().playerID = (int)Players.player2;
+        // getting player with active turn and disabling other player
+        if (whosTurn == (int)Players.player1)
         {
-            if (GameManager.Instance.striker.HostPlayer == true)
-            {
-                GameManager.Instance.ui.winnerText.text = "Player 1 wins!";
-                GameManager.Instance.ui.winnerText.text = "Player 1 wins!";
-            }
-            else
-            {
-                GameManager.Instance.ui.winnerText.text = "Player 2 wins!";
-                GameManager.Instance.ui.winnerText.text = "Player 2 wins!";
-            }
+            player2.SetActive(false);
         }
         else
         {
-            collectedQueenCoin.transform.position = new Vector3(0, 0f);
-            collectedQueenCoin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            player1.SetActive(false);
         }
-        
+
     }
 
-    public int CalculateStrikerForce()
+    void OnPieceHole (string piece, int playerID)
     {
-        strikerForce = (int)(baseStrikerForce * UIManager.Instance.powerIndicator.fillAmount);
-        return strikerForce;
+
+        ScoreManager.instance.UpdateScore(piece, playerID);
     }
 
+    // will be called from Striker.cs script
+    public void ChangeTurn()
+    {
+        if (whosTurn == (int)Players.player1)
+        {
+            player1.SetActive(false);
+            player2.SetActive(true);
+            whosTurn = (int)Players.player2;
+        }
+        else
+        {
+            player2.SetActive(false);
+            player1.SetActive(true);
+            whosTurn = (int)Players.player1;
+        }
+        if (ChangeTurnEvent != null)
+            ChangeTurnEvent();
+    }
+
+    public void Foul(GameObject player)
+    {
+
+        if (OnFoul != null)
+            OnFoul(player);
+    }
 }
