@@ -121,9 +121,9 @@ MonoBehaviour:
   arrow: {fileID: 2926233743457591398}
   arrowRotationSpeed: 24.1
   arrowRotationSmoothness: 0.15
-  powerCircle: {fileID: 3280127835661862212}
-  circleScaleMin: 0.4
-  circleScaleMax: 1.8
+  powerIcon: {fileID: 3280127835661862212}
+  iconScaleMin: 0.45
+  iconScaleMax: 1.02
   slider: {fileID: 0}
   directionPoint: {fileID: 6483179931165753998}
   playerID: 0

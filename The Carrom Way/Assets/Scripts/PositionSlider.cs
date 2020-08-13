@@ -4,27 +4,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 
-public class SliderPos : MonoBehaviour
+public class PositionSlider : MonoBehaviour
 {
-    public static SliderPos instance;
+    public static PositionSlider instance;
     float sliderValue = 0;
-
-    void Awake()
+   
+     void Awake()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(this.transform);
     }
-
     public float getValue { get { return sliderValue; } }
+   
+   
 
     public void OnValueChange(float value)
     {
-
+      
         sliderValue = value;
-
+       
     }
 
-
+  
 }

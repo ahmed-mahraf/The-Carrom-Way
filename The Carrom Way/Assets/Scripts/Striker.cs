@@ -23,21 +23,21 @@ public class Striker : MonoBehaviour
 
     [Header("--- PowerCircle Settings ---")]
     [SerializeField]
-    private GameObject powerCircle;
+    private GameObject powerIcon;
     [Range(0.4f, 1.8f)]
-    public float circleScaleMin;
+    public float iconScaleMin;
     [Range(0.4f, 1.8f)]
-    public float circleScaleMax;
+    public float iconScaleMax;
 
     [Space]
     [Header("UI REFRENCES")]
-    public SliderPos slider;
+    public PositionSlider slider;
 
     [Space]
     [Header("--- Child Refrences ---")]
     [SerializeField]
     private GameObject directionPoint;
-    new Rigidbody2D rigidbody;
+    new Rigidbody2D rb2d;
     Collider2D col;
     AudioSource audi;
     [Header("---- private Variables -----")]
@@ -55,11 +55,11 @@ public class Striker : MonoBehaviour
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         audi = GetComponent<AudioSource>();
         StrikerInitialPosition = transform.position;
-        powerCircle.SetActive(false);
+        powerIcon.SetActive(false);
         arrow.SetActive(false);
 
         if (playerID == (int)Players.player1)
@@ -78,10 +78,9 @@ public class Striker : MonoBehaviour
 
         if (shotDone)
         {
-            rigidbody.drag += Time.deltaTime * 2;//2
+            rb2d.drag += Time.deltaTime * 2;//2
 
-
-            if (rigidbody.IsSleeping())
+            if (rb2d.IsSleeping())
             {
                 Reset();
             }
@@ -92,32 +91,25 @@ public class Striker : MonoBehaviour
                 col.isTrigger = true;
             else
                 col.isTrigger = false;
-            transform.position = Vector3.Lerp(transform.position, new Vector3(SliderPos.instance.getValue, transform.position.y, transform.position.z), 0.15f);
-
+            transform.position = Vector3.Lerp(transform.position, new Vector3(PositionSlider.instance.getValue, transform.position.y, transform.position.z), 0.15f);
         }
-
-
     }
 
-    void updateStrikerPosition()
-    {
+    
 
-    }
     private void OnMouseDown()
     {
-        powerCircle.SetActive(true);
+        powerIcon.SetActive(true);
         arrow.SetActive(true);
         isAiming = false;
     }
-
-
-
+    
     private void OnMouseDrag()
     {
         float scale;
 
         scale = Vector2.Distance((Vector2)worldMousePos, (Vector2)transform.position);
-        scale = Mathf.Clamp(scale, circleScaleMin, circleScaleMax);
+        scale = Mathf.Clamp(scale, iconScaleMin, iconScaleMax);
         worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 direction = worldMousePos - (arrow.transform.position);
@@ -127,25 +119,29 @@ public class Striker : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(angle, -Vector3.forward);
         arrow.transform.rotation = Quaternion.Slerp(arrow.transform.rotation, rotation, arrowRotationSmoothness);
 
-        powerCircle.transform.localScale = Vector3.Lerp(powerCircle.transform.localScale, new Vector3(scale, scale, scale), 0.25f);
-        strikerSpeed = (int)(powerCircle.transform.localScale.x * 22f);
+        powerIcon.transform.localScale = Vector3.Lerp(powerIcon.transform.localScale, new Vector3(scale, scale, scale), 0.25f);
+        strikerSpeed = (int)(powerIcon.transform.localScale.x * 22f);
+    }
+
+    void updateStrikerPosition()
+    {
+
     }
 
     private void OnMouseUp()
     {
-        powerCircle.SetActive(false);
+        powerIcon.SetActive(false);
         arrow.SetActive(false);
         Shoot();
 
     }
-
-
+    
     void Shoot()
     {
         GameTracker.instance.ClearList();
         Vector2 dir = (Vector2)((directionPoint.transform.position - transform.position));
         dir.Normalize();
-        rigidbody.AddForce(dir * strikerSpeed, ForceMode2D.Impulse);
+        rb2d.AddForce(dir * strikerSpeed, ForceMode2D.Impulse);
         shotDone = true;
 
     }
@@ -157,7 +153,7 @@ public class Striker : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, StrikerInitialPosition.y, transform.position.z);
         shotDone = false;
-        rigidbody.drag = 0;
+        rb2d.drag = 0;
         isAiming = true;
         pottedPiece = false;
 
@@ -167,12 +163,9 @@ public class Striker : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Color newColor = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         sr.color = newColor;
-
-
     }
     void TurnPlayed()
     {
         GameManager.instance.ChangeTurn();
     }
-
 }
