@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public int getActivePlayerID { get { return whosTurn; } }
 
     public int GettotalPieces { get { return 4; } }
+
     public GameObject getActivePlayer
     {
         get
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
             return player2;
         }
     }
+
     public string getActivePlayerPieceColor
     {
         get

@@ -78,7 +78,7 @@ public class Striker : MonoBehaviour
 
         if (shotDone)
         {
-            rb2d.drag += Time.deltaTime * 2;//2
+            rb2d.drag += Time.deltaTime * 2; //2
 
             if (rb2d.IsSleeping())
             {
@@ -147,7 +147,7 @@ public class Striker : MonoBehaviour
     }
     // THIS WILL set to true to false depends on if the player has potted the correct piece
     // i-e Player 1 potted white piece and not the black
-    public bool pottedPiece { get; set; }
+    public bool puckToHole { get; set; }
 
     private void Reset()
     {
@@ -155,7 +155,15 @@ public class Striker : MonoBehaviour
         shotDone = false;
         rb2d.drag = 0;
         isAiming = true;
-        pottedPiece = false;
+        if (!puckToHole)
+        {
+            if (!Settings.instance.isPracticeMode)
+                TurnPlayed();
+        }
+        else
+        {
+            puckToHole = false;
+        }
 
         GameTracker.instance.ReplaceFouledPiece();
 
@@ -163,7 +171,10 @@ public class Striker : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Color newColor = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         sr.color = newColor;
+
+
     }
+
     void TurnPlayed()
     {
         GameManager.instance.ChangeTurn();

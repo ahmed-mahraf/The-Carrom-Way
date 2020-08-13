@@ -21,6 +21,7 @@ public class Settings : MonoBehaviour
     {
         isPracticeMode = state;
     }
+
     public void Set_rePositionHUD(bool state)
     {
         isPracticeMode = state;

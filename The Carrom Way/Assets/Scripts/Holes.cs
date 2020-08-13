@@ -41,11 +41,11 @@ public class Holes : MonoBehaviour
 
         if (IsCorrectPot(collision))
         {
-            GameManager.instance.getActivePlayer.GetComponent<Striker>().pottedPiece = true;
+            GameManager.instance.getActivePlayer.GetComponent<Striker>().puckToHole = true;
         }
         else
         {
-            GameManager.instance.getActivePlayer.GetComponent<Striker>().pottedPiece = false;
+            GameManager.instance.getActivePlayer.GetComponent<Striker>().puckToHole = false;
         }
         //hit effect fade
         StartCoroutine(PotEffect(collision.gameObject));

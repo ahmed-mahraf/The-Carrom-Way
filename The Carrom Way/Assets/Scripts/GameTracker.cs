@@ -30,15 +30,11 @@ public class GameTracker : MonoBehaviour
         obj.playerID = playerID;
         obj.piece = piece;
         trackerList.Add(obj);
-
-
-
     }
+
     public void ClearList()
     {
-
         trackerList.Clear();
-
     }
 
     public void ReplaceFouledPiece()
@@ -52,13 +48,14 @@ public class GameTracker : MonoBehaviour
                 playerWhoFouledID = t.piece.GetComponent<Striker>().playerID;
                 isFoul = true;
                 break;
-
             }
-
         }
+
         if (!isFoul)
             return;
+
         int counter = 0;
+
         foreach (Tracker t in trackerList)
         {
 
@@ -68,6 +65,7 @@ public class GameTracker : MonoBehaviour
                 PutPieceBackOnBoard(t.piece);
             }
         }
+
         print("counter " + counter);
         if (counter == 0)
         {
@@ -91,6 +89,7 @@ public class GameTracker : MonoBehaviour
         pieceBackOnBoard?.Invoke(piece);
     }
 }
+
 public struct Tracker
 {
     public GameObject piece;
