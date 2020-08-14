@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public string getActiveTurn { get { return whosTurn.ToString(); } }
     public int getActivePlayerID { get { return whosTurn; } }
 
-    public int GettotalPieces { get { return 4; } }
+    public int GettotalPieces { get { return 8; } }
 
     public GameObject getActivePlayer
     {

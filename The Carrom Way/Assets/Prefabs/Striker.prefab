@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff3717a5a90fd548b3605dcfec6b65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strikerSpeed: 30
+  strikerSpeed: 50
   arrow: {fileID: 2926233743457591398}
   arrowRotationSpeed: 24.1
   arrowRotationSmoothness: 0.15
@@ -136,7 +136,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1037114642793845256}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 42a62f1b6dbfd684ca636b8069aa46d5, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

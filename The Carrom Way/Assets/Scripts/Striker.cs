@@ -7,11 +7,11 @@ public class Striker : MonoBehaviour
 {
     public event Action UpdatePlayerTurn;
 
-    [Header("--- Striker Settings ---")]
+    [Header("Striker")]
     public int strikerSpeed = 25;
     [Space]
 
-    [Header("--- Arrow Settings ---")]
+    [Header("Arrow")]
     [SerializeField]
     private GameObject arrow;
 
@@ -21,7 +21,7 @@ public class Striker : MonoBehaviour
     public float arrowRotationSmoothness;
     [Space]
 
-    [Header("--- PowerCircle Settings ---")]
+    [Header("Power Icon")]
     [SerializeField]
     private GameObject powerIcon;
     [Range(0.4f, 1.8f)]
@@ -30,20 +30,20 @@ public class Striker : MonoBehaviour
     public float iconScaleMax;
 
     [Space]
-    [Header("UI REFRENCES")]
+    [Header("Canvas UI")]
     public PositionSlider slider;
 
     [Space]
-    [Header("--- Child Refrences ---")]
+    [Header("Direction")]
     [SerializeField]
     private GameObject directionPoint;
     new Rigidbody2D rb2d;
     Collider2D col;
     AudioSource audi;
-    [Header("---- private Variables -----")]
+    [Header("Private")]
     Vector3 worldMousePos;
     Vector3 StrikerInitialPosition;
-    [Header("---- boolean Variables -----")]
+    [Header("Boolean")]
     bool shotDone = false;
     bool isAiming = true;
 
